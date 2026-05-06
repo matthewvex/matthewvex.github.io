@@ -358,3 +358,22 @@ footer {
     padding: 40px;
     color: #444;
 }
+.notebook-button {
+    display:inline-block;
+    margin-top:14px;
+    margin-right:10px;
+    padding:10px 18px;
+    background:#000;
+    color:white;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:.95rem;
+    transition:.25s ease;
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+}
+.notebook-button:hover {
+    background:#333;
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(0,0,0,.25);
+}
