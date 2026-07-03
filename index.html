@@ -596,6 +596,51 @@ footer {
     }
 }
 
+    
+/* ---------------- VISUAL BUG FIXES ONLY ---------------- */
+/* Prevent expanded cards from jumping over nearby images or clipping awkwardly. */
+.text.is-expanded {
+    transform: none !important;
+    z-index: 20;
+}
+
+/* Keep the expanded section readable and inside the card instead of visually spilling like a floating layer. */
+.text.is-expanded:hover {
+    transform: none !important;
+}
+
+/* Expanded media stays contained and does not overpower the layout. */
+.text.is-expanded .auton-media {
+    max-height: 430px;
+    object-fit: contain;
+    background: #f2f2f2;
+}
+
+/* Remove the heavy hover push only while a dropdown is open. */
+.text.is-expanded .extra-content.open {
+    position: relative;
+    z-index: 2;
+}
+
+/* Slightly reduce the image hover so it does not collide with open panels. */
+.side-image:hover {
+    transform: scale(1.025) !important;
+}
+
+/* On narrower screens, remove all 3D tilt to prevent side overflow. */
+@media (max-width: 1100px) {
+    .content-section.ta .text,
+    .content-section.ta .side-image,
+    .content-section.at .text,
+    .content-section.at .side-image {
+        transform: none !important;
+    }
+
+    .content-section {
+        gap: 36px;
+    }
+}
+
     </style>
 </head>
 
@@ -635,7 +680,7 @@ footer {
                     Led one of the top robotics teams in the country, advancing to the National Championship Finals and qualifying for the World Championship.
                 </p>
 
-                <button class="expand-arrow" aria-label="Expand robotics section">Open Details</button>
+                <button class="expand-arrow" aria-label="Expand robotics section" aria-expanded="false">Open Details</button>
 
                 <div class="extra-content">
                     <h3>Autonomous Demo</h3>
@@ -670,7 +715,7 @@ footer {
                     Produced 200+ pages of engineering documentation covering robot design, autonomous programming, and competition strategy.
                 </p>
 
-                <button class="expand-arrow" aria-label="Expand documentation section">Open Details</button>
+                <button class="expand-arrow" aria-label="Expand documentation section" aria-expanded="false">Open Details</button>
 
                 <div class="extra-content">
                     <h3>Engineering Notebook Samples</h3>
@@ -871,12 +916,14 @@ $$(".expand-arrow").forEach(button => {
         const card = button.closest(".text");
         const extra = card ? card.querySelector(".extra-content") : null;
 
-        if (!extra) return;
+        if (!extra || !card) return;
 
         const isOpen = extra.classList.toggle("open");
 
+        card.classList.toggle("is-expanded", isOpen);
         button.classList.toggle("open", isOpen);
         button.textContent = isOpen ? "Close Details" : "Open Details";
+        button.setAttribute("aria-expanded", String(isOpen));
 
         const video = extra.querySelector("video");
 
