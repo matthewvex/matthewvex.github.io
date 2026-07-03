@@ -2,163 +2,190 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matthew Ochsner – Portfolio</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-<div id="dim-overlay"></div>
-<canvas id="particle-canvas"></canvas>
+    <div id="dim-overlay"></div>
+    <canvas id="particle-canvas"></canvas>
 
-<div id="loader">
-    <h1 id="loading-text">Loading</h1>
-</div>
-
-<header class="hero">
-    <div class="hero-left hero-content">
-        <h1 class="hero-name">Matthew Ochsner</h1>
-        <p class="hero-subtitle">
-            Senior Student at Abraham Lincoln High School<br>
-            Focused on Robotics, Engineering, and Programming
-        </p>
-        <div class="down-arrow magnetic">▼</div>
+    <div id="loader">
+        <h1 id="loading-text">Loading</h1>
     </div>
 
-    <div class="hero-right hero-content">
-        <img src="assets/IMG_7587.jpeg" class="hero-image">
-    </div>
-</header>
+    <header class="hero">
+        <div class="hero-left hero-content">
+            <p class="eyebrow">Portfolio</p>
+            <h1 class="hero-name">Matthew Ochsner</h1>
+            <p class="hero-subtitle">
+                Senior Student at Abraham Lincoln High School<br>
+                Focused on Robotics, Engineering, and Programming
+            </p>
 
-<main>
-
-    <!-- SECTION 1 -->
-    <section class="content-section ta">
-        <div class="text card-3d">
-            <h2>I've Led Robotics Projects</h2>
-            <p>Led one of the top robotics teams in the country, advancing to the National Championship Finals and qualifying for the World Championship.</p>
-
-            <div class="expand-arrow">▼</div>
-            <div class="extra-content">
-                <h3>Autonomous Demo</h3>
-
-                <video class="auton-media" muted loop playsinline>
-                    <source src="assets/auton.webm" type="video/webm">
-                    <source src="assets/auton.mp4" type="video/mp4">
-                </video>
-
-                <ul>
-                    <li>Example of an Autonomous Routine</li>
-                    <li>U.S. Open National Finalist</li>
-                    <li>U.S. Open Green Division Champion</li>
-                    <li>Iowa State Champion</li>
-                    <li>Iowa State Skills Champion</li>
-                    <li>Worlds Division Semi-Finalist</li>
-                </ul>
-            </div>
+            <button class="down-arrow" aria-label="Scroll to portfolio content">▼</button>
         </div>
 
-        <img src="assets/IMG_3829.JPG" class="side-image card-3d">
+        <div class="hero-right hero-content">
+            <img src="assets/IMG_7587.jpeg" class="hero-image" alt="Matthew Ochsner">
+        </div>
+    </header>
+
+    <main id="content">
+
+        <!-- SECTION 1 -->
+        <section class="content-section ta">
+            <div class="text card-3d">
+                <p class="section-label">Robotics Leadership</p>
+                <h2>I've Led Robotics Projects</h2>
+                <p>
+                    Led one of the top robotics teams in the country, advancing to the National Championship Finals and qualifying for the World Championship.
+                </p>
+
+                <button class="expand-arrow" aria-label="Expand robotics section">▼</button>
+
+                <div class="extra-content">
+                    <h3>Autonomous Demo</h3>
+
+                    <video class="auton-media" muted loop playsinline preload="metadata">
+                        <source src="assets/auton.webm" type="video/webm">
+                        <source src="assets/auton.mp4" type="video/mp4">
+                    </video>
+
+                    <ul>
+                        <li>Example of an Autonomous Routine</li>
+                        <li>U.S. Open National Finalist</li>
+                        <li>U.S. Open Green Division Champion</li>
+                        <li>Iowa State Champion</li>
+                        <li>Iowa State Skills Champion</li>
+                        <li>Worlds Division Semi-Finalist</li>
+                    </ul>
+                </div>
+            </div>
+
+            <img src="assets/IMG_3829.JPG" class="side-image card-3d" alt="Robotics competition">
+        </section>
+
+        <!-- SECTION 2 -->
+        <section class="content-section at">
+            <img src="assets/IMG_5424.jpeg" class="side-image card-3d" alt="Engineering documentation">
+
+            <div class="text card-3d">
+                <p class="section-label">Documentation</p>
+                <h2>I've Contributed to Engineering Documentation</h2>
+                <p>
+                    Produced 200+ pages of engineering documentation covering robot design, autonomous programming, and competition strategy.
+                </p>
+
+                <button class="expand-arrow" aria-label="Expand documentation section">▼</button>
+
+                <div class="extra-content">
+                    <h3>Engineering Notebook Samples</h3>
+
+                    <img src="assets/notebook.png" class="auton-media" alt="Engineering notebook sample">
+
+                    <ul>
+                        <li>Two full-year engineering notebooks</li>
+                        <li>Developed using the iterative design process</li>
+                    </ul>
+
+                    <div class="button-row">
+                        <a class="notebook-button" href="https://docs.google.com/presentation/d/1YOchEbEHIp_xqD45ipvGdBornloUDp4Q9J0OyUTbpR0/edit?usp=sharing" target="_blank" rel="noopener">
+                            2026–2027 Engineering Notebook →
+                        </a>
+
+                        <a class="notebook-button" href="https://docs.google.com/presentation/d/18BG96TuRv6_l7dhTJ069DKZa0bz133S2UFBVQQLp1iE/edit?usp=sharing" target="_blank" rel="noopener">
+                            2025–2026 Engineering Notebook →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section class="content-section ta">
+            <div class="text card-3d">
+                <p class="section-label">Technical Background</p>
+                <h2>Technical Skills & Coursework</h2>
+                <p>
+                    My technical background combines high school engineering coursework, college-level classes, and independent robotics learning.
+                </p>
+
+                <div class="mini-block">
+                    <button class="mini-header">
+                        <h3>Coursework</h3>
+                        <span class="mini-arrow">▼</span>
+                    </button>
+
+                    <div class="mini-extra">
+                        <p>Robotics Engineering</p>
+                        <p>General Engineering</p>
+                        <p>Mathematics</p>
+                        <p>Physics</p>
+                        <p>NASA OSS101</p>
+                        <p>Iowa Western Community College Studies</p>
+                    </div>
+                </div>
+
+                <div class="mini-block">
+                    <button class="mini-header">
+                        <h3>Programming & Software</h3>
+                        <span class="mini-arrow">▼</span>
+                    </button>
+
+                    <div class="mini-extra">
+                        <p>C++</p>
+                        <p>Python</p>
+                        <p>LVGL</p>
+                    </div>
+                </div>
+
+                <div class="mini-block">
+                    <button class="mini-header">
+                        <h3>Technical Stack</h3>
+                        <span class="mini-arrow">▼</span>
+                    </button>
+
+                    <div class="mini-extra">
+                        <p>Fusion 360</p>
+                        <p>OpenRocket</p>
+                        <p>Arduino</p>
+                        <p>VEX V5</p>
+                    </div>
+                </div>
+            </div>
+
+            <img src="assets/citycouncil.png" class="side-image card-3d" alt="City council presentation">
+        </section>
+
+    </main>
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+        <div class="contact-card card-3d">
+            <p class="section-label">Contact</p>
+            <h2>Contact Me</h2>
+            <p>
+                If you'd like to reach out about opportunities, collaboration, or robotics projects, feel free to contact me anytime.
+            </p>
+
+            <div class="contact-info">
+                <p>Phone: +1 712-310-0785</p>
+                <p>Email: mochsner08@gmail.com</p>
+            </div>
+
+            <div class="contact-buttons">
+                <a href="mailto:mochsner08@gmail.com" class="contact-btn">Email Me</a>
+                <a href="tel:7123100785" class="contact-btn">Text Me</a>
+                <a href="https://www.linkedin.com/in/matthewochsner" target="_blank" rel="noopener" class="contact-btn">LinkedIn</a>
+            </div>
+        </div>
     </section>
 
-    <!-- SECTION 2 -->
-    <section class="content-section at">
-        <img src="assets/IMG_5424.jpeg" class="side-image card-3d">
-
-        <div class="text card-3d">
-            <h2>I've Contributed to Engineering Documentation</h2>
-            <p>Produced 200+ pages of engineering documentation covering robot design, autonomous programming, and competition strategy.</p>
-
-            <div class="expand-arrow">▼</div>
-            <div class="extra-content">
-                <h3>Engineering Notebook Samples</h3>
-
-                <img src="assets/notebook.png" class="auton-media">
-
-                <ul>
-                    <li>Two full-year engineering notebooks</li>
-                    <li>Developed using the Iterative Design Process</li>
-                </ul>
-
-                <a class="notebook-button" href="https://docs.google.com/presentation/d/1YOchEbEHIp_xqD45ipvGdBornloUDp4Q9J0OyUTbpR0/edit?usp=sharing" target="_blank">2026–2027 Engineering Notebook →</a>
-
-                <a class="notebook-button" href="https://docs.google.com/presentation/d/18BG96TuRv6_l7dhTJ069DKZa0bz133S2UFBVQQLp1iE/edit?usp=sharing" target="_blank">2025–2026 Engineering Notebook →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3 -->
-    <section class="content-section ta">
-        <div class="text card-3d">
-            <h2>Technical Skills & Coursework</h2>
-            <p>My technical background combines high school engineering coursework, college-level classes, and independent robotics learning.</p>
-
-            <div class="mini-block">
-                <div class="mini-header">
-                    <h3>Coursework</h3>
-                    <div class="mini-arrow">▼</div>
-                </div>
-                <div class="mini-extra">
-                    <p>• Robotics Engineering</p>
-                    <p>• General Engineering</p>
-                    <p>• Mathematics</p>
-                    <p>• Physics</p>
-                    <p>• NASA OSS101</p>
-                    <p>• Iowa Western Community College Studies</p>
-                </div>
-            </div>
-
-            <div class="mini-block">
-                <div class="mini-header">
-                    <h3>Programming & Software</h3>
-                    <div class="mini-arrow">▼</div>
-                </div>
-                <div class="mini-extra">
-                    <p>• C++</p>
-                    <p>• Python</p>
-                    <p>• LVGL</p>
-                </div>
-            </div>
-
-            <div class="mini-block">
-                <div class="mini-header">
-                    <h3>Technical Stack</h3>
-                    <div class="mini-arrow">▼</div>
-                </div>
-                <div class="mini-extra">
-                    <p>• Fusion 360</p>
-                    <p>• OpenRocket</p>
-                    <p>• Arduino</p>
-                    <p>• VEX V5</p>
-                </div>
-            </div>
-        </div>
-
-        <img src="assets/citycouncil.png" class="side-image card-3d">
-    </section>
-
-</main>
-
-<!-- CONTACT -->
-<section class="contact-section">
-    <div class="contact-card card-3d">
-        <h2>Contact Me</h2>
-        <p>If you'd like to reach out about opportunities, collaboration, or robotics projects, feel free to contact me anytime.</p>
-
-        <p>Phone: +1 712-310-0785</p>
-        <p>Email: mochsner08@gmail.com</p>
-
-        <div class="contact-buttons">
-            <a href="mailto:mochsner08@gmail.com" class="contact-btn">Email Me</a>
-            <a href="tel:7123100785" class="contact-btn">Text Me</a>
-            <a href="https://www.linkedin.com/in/matthewochsner" target="_blank" class="contact-btn">LinkedIn</a>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 Matthew Ochsner</p>
-</footer>
-
-<script src="script.js"></script>
+    <footer>
+        <p>© 2026 Matthew Ochsner</p>
+    </footer>
 </body>
 </html>
