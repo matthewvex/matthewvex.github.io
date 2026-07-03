@@ -641,6 +641,57 @@ footer {
     }
 }
 
+    
+/* ---------------- AUTON CARD BUG FIX ONLY ---------------- */
+/* The first/autonomous card has large video content. This keeps it contained
+   without redesigning the rest of the page. */
+.auton-card.is-expanded {
+    max-width: 760px;
+}
+
+.auton-card.is-expanded .extra-content.open {
+    max-height: 760px;
+}
+
+.auton-card.is-expanded .extra-content.open .extra-pad {
+    padding: 18px;
+}
+
+.auton-card.is-expanded video.auton-media {
+    width: 100%;
+    max-height: 330px;
+    object-fit: contain;
+    background: #f2f2f2;
+}
+
+/* When the first card is open, stop the side image from competing with the video. */
+.auton-section:has(.auton-card.is-expanded) {
+    align-items: start;
+}
+
+.auton-section:has(.auton-card.is-expanded) .side-image {
+    transform: none !important;
+    scale: 0.96;
+    opacity: 0.92;
+}
+
+/* Fallback for browsers that do not support :has(). */
+.auton-section.auton-open {
+    align-items: start;
+}
+
+.auton-section.auton-open .side-image {
+    transform: none !important;
+    scale: 0.96;
+    opacity: 0.92;
+}
+
+@media (max-width: 980px) {
+    .auton-card.is-expanded video.auton-media {
+        max-height: 280px;
+    }
+}
+
     </style>
 </head>
 
@@ -672,8 +723,8 @@ footer {
     <main id="content">
 
         <!-- SECTION 1 -->
-        <section class="content-section ta">
-            <div class="text card-3d">
+        <section class="content-section ta auton-section">
+            <div class="text card-3d auton-card">
                 <p class="section-label">Robotics Leadership</p>
                 <h2>I've Led Robotics Projects</h2>
                 <p>
@@ -921,6 +972,11 @@ $$(".expand-arrow").forEach(button => {
         const isOpen = extra.classList.toggle("open");
 
         card.classList.toggle("is-expanded", isOpen);
+
+        const section = card.closest(".content-section");
+        if (section && card.classList.contains("auton-card")) {
+            section.classList.toggle("auton-open", isOpen);
+        }
         button.classList.toggle("open", isOpen);
         button.textContent = isOpen ? "Close Details" : "Open Details";
         button.setAttribute("aria-expanded", String(isOpen));
