@@ -3,1161 +3,1430 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matthew Ochsner – Portfolio</title>
-
+    <meta name="description" content="Matthew Ochsner — competition robotics, engineering documentation, programming, and technical work.">
     <meta name="referrer" content="no-referrer">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'nonce-matthew-portfolio-v1'; style-src 'nonce-matthew-portfolio-v1'; img-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests;">
-
-    <style nonce="matthew-portfolio-v1">
-
-:root {
-    --bg: #ffffff;
-    --text: #111111;
-    --muted: #444444;
-    --line: rgba(0, 0, 0, 0.18);
-    --soft-line: rgba(0, 0, 0, 0.08);
-    --shadow: 0 20px 50px rgba(0, 0, 0, 0.14);
-    --shadow-hover: 0 34px 80px rgba(0, 0, 0, 0.28);
-    --square: 0;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    font-family: "Times New Roman", Times, serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-}
-
-button,
-a {
-    font-family: "Times New Roman", Times, serif;
-}
-
-button {
-    border: 0;
-    background: none;
-    cursor: pointer;
-}
-
-button:focus-visible,
-a:focus-visible {
-    outline: 2px solid #111111;
-    outline-offset: 4px;
-}
-
-img,
-video {
-    display: block;
-    max-width: 100%;
-}
-
-#particle-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-#loader {
-    position: fixed;
-    inset: 0;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease;
-}
-
-#loading-text {
-    font-size: 2rem;
-    letter-spacing: -0.03em;
-}
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 70px;
-    padding: 0 10%;
-    background: rgba(255, 255, 255, 0.96);
-    position: relative;
-    z-index: 2;
-    overflow: hidden;
-    transform-style: preserve-3d;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-left {
-    max-width: 680px;
-}
-
-.eyebrow,
-.section-label {
-    margin: 0 0 14px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #555555;
-}
-
-.hero-name {
-    font-size: clamp(3.4rem, 7vw, 6.4rem);
-    font-weight: 700;
-    line-height: 0.95;
-    margin: 0;
-    letter-spacing: -0.045em;
-}
-
-.hero-subtitle {
-    font-size: clamp(1.1rem, 1.8vw, 1.35rem);
-    margin: 24px 0 0;
-    line-height: 1.55;
-    color: var(--muted);
-    max-width: 620px;
-}
-
-.hero-right {
-    width: min(40%, 440px);
-    display: flex;
-    justify-content: center;
-}
-
-.hero-image {
-    width: 100%;
-    max-width: 420px;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: var(--square);
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-}
-
-.down-arrow {
-    margin-top: 42px;
-    padding: 12px 22px;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #111111;
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.35);
-    border-radius: 0;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: 0.22s ease;
-}
-
-.down-arrow:hover {
-    background: #111111;
-    color: #ffffff;
-    transform: translateY(-2px);
-}
-
-.content-section,
-.contact-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 64px;
-    padding: 90px 10%;
-    min-height: 90vh;
-    perspective: 1200px;
-    opacity: 0;
-    transform: translateY(50px);
-    position: relative;
-    z-index: 2;
-}
-
-.content-section.in-view,
-.contact-section.in-view {
-    animation: sectionEnter 0.85s ease forwards;
-}
-
-@keyframes sectionEnter {
-    from {
-        opacity: 0;
-        transform: translateY(70px) translateZ(-80px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) translateZ(0);
-    }
-}
-
-.card-3d {
-    transform-style: preserve-3d;
-    transition:
-        transform 0.55s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
-    transform-origin: center center;
-    position: relative;
-    z-index: 5;
-}
-
-.text,
-.contact-card {
-    background: rgba(255, 255, 255, 0.96);
-    padding: clamp(28px, 4vw, 44px);
-    border-radius: var(--square);
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-    max-width: 660px;
-}
-
-.text h2,
-.contact-card h2 {
-    margin: 0 0 16px;
-    font-size: clamp(2rem, 3vw, 2.75rem);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-}
-
-.text p,
-.contact-card p {
-    font-size: 1.08rem;
-    line-height: 1.65;
-    color: var(--muted);
-}
-
-.side-image {
-    width: min(420px, 36vw);
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: var(--square);
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-}
-
-.content-section.ta .text {
-    transform: translateZ(28px) rotateY(7deg);
-}
-
-.content-section.ta .side-image {
-    transform: translateZ(28px) rotateY(-7deg);
-}
-
-.content-section.at .text {
-    transform: translateZ(28px) rotateY(-7deg);
-}
-
-.content-section.at .side-image {
-    transform: translateZ(28px) rotateY(7deg);
-}
-
-.content-section.ta .text:hover,
-.content-section.at .text:hover,
-.contact-card:hover {
-    transform: rotateY(0deg) translateZ(85px) scale(1.005) !important;
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(0, 0, 0, 0.28);
-}
-
-.content-section.ta .side-image:hover {
-    transform: rotateY(-4deg) scale(1.045) !important;
-    box-shadow: var(--shadow-hover);
-}
-
-.content-section.at .side-image:hover {
-    transform: rotateY(4deg) scale(1.045) !important;
-    box-shadow: var(--shadow-hover);
-}
-
-.expand-arrow {
-    display: block;
-    width: 100%;
-    margin-top: 22px;
-    padding: 13px 0;
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: #111111;
-    border-top: 1px solid var(--soft-line);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: 0.22s ease;
-}
-
-.expand-arrow:hover {
-    letter-spacing: 0.09em;
-}
-
-.expand-arrow.open {
-    transform: none;
-}
-
-.extra-content {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition:
-        max-height 0.5s ease,
-        opacity 0.35s ease,
-        margin-top 0.35s ease,
-        padding 0.35s ease;
-    background: #ffffff;
-    border: 1px solid transparent;
-    border-radius: var(--square);
-    margin-top: 0;
-    padding: 0 22px;
-}
-
-.extra-content.open {
-    max-height: 1200px;
-    opacity: 1;
-    margin-top: 18px;
-    padding: 22px;
-    border-color: var(--soft-line);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.09);
-}
-
-.extra-content h3 {
-    margin: 0 0 16px;
-    font-size: 1.25rem;
-}
-
-.extra-content ul {
-    margin: 18px 0 0;
-    padding-left: 20px;
-    color: var(--muted);
-    line-height: 1.65;
-}
-
-.auton-media {
-    width: 100%;
-    max-width: 520px;
-    border-radius: var(--square);
-    border: 1px solid var(--line);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-}
-
-.button-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 18px;
-}
-
-.notebook-button {
-    display: inline-block;
-    padding: 11px 16px;
-    background: #111111;
-    color: #ffffff;
-    border-radius: var(--square);
-    border: 1px solid #111111;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.92rem;
-    transition: 0.22s ease;
-}
-
-.notebook-button:hover {
-    background: #ffffff;
-    color: #111111;
-}
-
-.mini-block {
-    margin-top: 16px;
-    border-radius: var(--square);
-    border: 1px solid var(--soft-line);
-    background: #ffffff;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
-}
-
-.mini-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-    padding: 15px 16px;
-}
-
-.mini-header h3 {
-    margin: 0;
-    font-size: 1.02rem;
-    letter-spacing: -0.015em;
-}
-
-.mini-status {
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #555555;
-    transition: color 0.22s ease;
-}
-
-.mini-header:hover .mini-status {
-    color: #111111;
-}
-
-.mini-extra {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition:
-        max-height 0.35s ease,
-        opacity 0.25s ease,
-        padding 0.25s ease;
-    padding: 0 16px;
-}
-
-.mini-extra.open {
-    max-height: 260px;
-    opacity: 1;
-    padding: 0 16px 16px;
-}
-
-.mini-extra p {
-    margin: 0;
-    padding: 6px 0;
-    line-height: 1.35;
-    color: var(--muted);
-}
-
-.contact-section {
-    min-height: 72vh;
-    text-align: center;
-}
-
-.contact-card {
-    max-width: 720px;
-    transform: translateZ(28px);
-}
-
-.contact-info {
-    margin: 28px 0;
-}
-
-.contact-info p {
-    margin: 8px 0;
-}
-
-.contact-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
-
-.contact-btn {
-    display: inline-block;
-    padding: 12px 20px;
-    background: #111111;
-    color: #ffffff;
-    border-radius: var(--square);
-    border: 1px solid #111111;
-    text-decoration: none;
-    font-weight: 700;
-    transition: 0.22s ease;
-}
-
-.contact-btn:hover {
-    background: #ffffff;
-    color: #111111;
-}
-
-#dim-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-    z-index: 1;
-}
-
-#dim-overlay.active {
-    opacity: 0.16;
-}
-
-footer {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 38px;
-    color: #555555;
-    background: rgba(255, 255, 255, 0.9);
-}
-
-@media (max-width: 980px) {
-    .hero {
-        flex-direction: column;
-        justify-content: center;
-        text-align: left;
-        align-items: flex-start;
-        gap: 42px;
-        padding: 90px 7%;
-    }
-
-    .hero-right {
-        width: 100%;
-        max-width: 420px;
-    }
-
-    .content-section,
-    .contact-section {
-        flex-direction: column;
-        padding: 80px 7%;
-        gap: 32px;
-    }
-
-    .content-section.at {
-        flex-direction: column-reverse;
-    }
-
-    .content-section.ta .text,
-    .content-section.ta .side-image,
-    .content-section.at .text,
-    .content-section.at .side-image {
-        transform: none;
-    }
-
-    .side-image {
-        width: 100%;
-        max-width: 520px;
-        aspect-ratio: 16 / 11;
-    }
-}
-
-@media (max-width: 560px) {
-    .hero {
-        padding: 70px 6%;
-    }
-
-    .hero-name {
-        font-size: 3.2rem;
-    }
-
-    .text,
-    .contact-card {
-        padding: 26px;
-    }
-
-    .contact-buttons,
-    .button-row {
-        flex-direction: column;
-    }
-
-    .contact-btn,
-    .notebook-button {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
-    #particle-canvas {
-        display: none;
-    }
-}
-
-    
-
-.text.is-expanded {
-    transform: none !important;
-    z-index: 20;
-}
-
-.text.is-expanded:hover {
-    transform: none !important;
-}
-
-.text.is-expanded .auton-media {
-    max-height: 430px;
-    object-fit: contain;
-    background: #f2f2f2;
-}
-
-.text.is-expanded .extra-content.open {
-    position: relative;
-    z-index: 2;
-}
-
-.side-image:hover {
-    transform: scale(1.025) !important;
-}
-
-@media (max-width: 1100px) {
-    .content-section.ta .text,
-    .content-section.ta .side-image,
-    .content-section.at .text,
-    .content-section.at .side-image {
-        transform: none !important;
-    }
-
-    .content-section {
-        gap: 36px;
-    }
-}
-
-    
-
-.auton-card.is-expanded {
-    max-width: 760px;
-}
-
-.auton-card.is-expanded .extra-content.open {
-    max-height: 760px;
-}
-
-.auton-card.is-expanded .extra-content.open .extra-pad {
-    padding: 18px;
-}
-
-.auton-card.is-expanded video.auton-media {
-    width: 100%;
-    max-height: 330px;
-    object-fit: contain;
-    background: #f2f2f2;
-}
-
-.auton-section:has(.auton-card.is-expanded) {
-    align-items: start;
-}
-
-.auton-section:has(.auton-card.is-expanded) .side-image {
-    transform: none !important;
-    scale: 0.96;
-    opacity: 0.92;
-}
-
-.auton-section.auton-open {
-    align-items: start;
-}
-
-.auton-section.auton-open .side-image {
-    transform: none !important;
-    scale: 0.96;
-    opacity: 0.92;
-}
-
-@media (max-width: 980px) {
-    .auton-card.is-expanded video.auton-media {
-        max-height: 280px;
-    }
-}
-
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'nonce-matthew-portfolio-v3'; style-src 'nonce-matthew-portfolio-v3' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests;">
+
+    <title>Matthew Ochsner — Robotics & Engineering</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+    <style nonce="matthew-portfolio-v3">
+        :root {
+            --paper: #f1eee4;
+            --ink: #171813;
+            --signal: #d6482f;
+            --faint: rgba(23, 24, 19, 0.10);
+            --line: rgba(23, 24, 19, 0.28);
+            --page: min(1440px, calc(100vw - 48px));
+            --gutter: clamp(20px, 4vw, 68px);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "IBM Plex Sans", sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            pointer-events: none;
+            background:
+                linear-gradient(to right, transparent calc(50% - 0.5px), var(--faint) 50%, transparent calc(50% + 0.5px)),
+                repeating-linear-gradient(
+                    to right,
+                    transparent 0,
+                    transparent calc(8.333vw - 1px),
+                    rgba(23, 24, 19, 0.035) calc(8.333vw - 1px),
+                    rgba(23, 24, 19, 0.035) 8.333vw
+                );
+        }
+
+        a,
+        button {
+            color: inherit;
+            font: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--signal);
+            outline-offset: 4px;
+        }
+
+        img,
+        video {
+            display: block;
+            width: 100%;
+        }
+
+        ::selection {
+            background: var(--signal);
+            color: var(--paper);
+        }
+
+        #particle-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .shell {
+            width: var(--page);
+            margin-inline: auto;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--ink);
+            background: var(--paper);
+        }
+
+        .nav {
+            width: var(--page);
+            min-height: 58px;
+            margin-inline: auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .nav a {
+            text-decoration: none;
+        }
+
+        .nav-name {
+            justify-self: start;
+            font-weight: 600;
+        }
+
+        .nav-mark {
+            width: 9px;
+            height: 9px;
+            background: var(--signal);
+            transform: rotate(45deg);
+        }
+
+        .nav-links {
+            justify-self: end;
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            position: relative;
+        }
+
+        .nav-links a::after,
+        .text-link::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+            left: 0;
+            height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 160ms ease;
+        }
+
+        .nav-links a:hover::after,
+        .text-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .hero {
+            position: relative;
+            isolation: isolate;
+            min-height: calc(100svh - 59px);
+            padding-block: clamp(42px, 6vw, 92px) 54px;
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            grid-template-rows: auto 1fr auto;
+            column-gap: 18px;
+        }
+
+        .hero-rail {
+            position: relative;
+            z-index: 2;
+            grid-column: 1 / 2;
+            grid-row: 1 / 4;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            align-self: stretch;
+            padding-top: 4px;
+            border-left: 1px solid var(--ink);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero-label {
+            position: relative;
+            z-index: 2;
+            grid-column: 2 / 7;
+            grid-row: 1;
+            margin: 0;
+            align-self: start;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.72rem;
+            line-height: 1.6;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero-label span {
+            color: var(--signal);
+        }
+
+        .hero-title {
+            position: relative;
+            z-index: 2;
+            grid-column: 2 / 11;
+            grid-row: 2;
+            align-self: center;
+            margin: 4vh 0 2vh;
+            font-family: "Instrument Serif", serif;
+            font-size: clamp(6.1rem, 14vw, 13.8rem);
+            font-weight: 400;
+            letter-spacing: -0.075em;
+            line-height: 0.69;
+        }
+
+        .hero-title .first,
+        .hero-title .last {
+            display: block;
+        }
+
+        .hero-title .last {
+            margin-left: 12.5%;
+            font-style: italic;
+        }
+
+        .hero-portrait {
+            grid-column: 9 / 13;
+            grid-row: 1 / 3;
+            align-self: end;
+            z-index: 1;
+            margin: 0 0 1.5rem;
+            border: 1px solid var(--ink);
+            background: var(--paper);
+            padding: 8px;
+        }
+
+        .hero-portrait img {
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.08);
+        }
+
+        .hero-portrait figcaption {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 8px;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.58rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .hero-intro {
+            position: relative;
+            z-index: 2;
+            grid-column: 2 / 6;
+            grid-row: 3;
+            align-self: end;
+            margin: 0;
+            padding-top: 16px;
+            border-top: 1px solid var(--ink);
+            font-size: clamp(1rem, 1.4vw, 1.22rem);
+            line-height: 1.55;
+        }
+
+        .hero-meta {
+            position: relative;
+            z-index: 2;
+            grid-column: 7 / 10;
+            grid-row: 3;
+            align-self: end;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.66rem;
+            text-transform: uppercase;
+        }
+
+        .hero-meta div {
+            min-height: 66px;
+            padding: 12px 10px 10px 0;
+        }
+
+        .hero-meta div + div {
+            padding-left: 14px;
+            border-left: 1px solid var(--line);
+        }
+
+        .hero-meta strong,
+        .hero-meta span {
+            display: block;
+        }
+
+        .hero-meta strong {
+            margin-bottom: 10px;
+            color: var(--signal);
+            font-weight: 600;
+        }
+
+        .scroll-note {
+            z-index: 2;
+            grid-column: 11 / 13;
+            grid-row: 3;
+            align-self: end;
+            justify-self: end;
+            position: relative;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.66rem;
+            letter-spacing: 0.06em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .scroll-note::before {
+            content: "↓";
+            margin-right: 8px;
+            color: var(--signal);
+        }
+
+        .index {
+            margin-top: 42px;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .index-heading {
+            display: grid;
+            grid-template-columns: 2fr 7fr 2fr 1fr;
+            gap: 18px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--ink);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.64rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .index-row {
+            display: grid;
+            grid-template-columns: 2fr 7fr 2fr 1fr;
+            gap: 18px;
+            align-items: baseline;
+            min-height: 92px;
+            padding: 20px 0 18px;
+            border-bottom: 1px solid var(--line);
+            text-decoration: none;
+        }
+
+        .index-row:last-child {
+            border-bottom: 0;
+        }
+
+        .index-no,
+        .index-type,
+        .index-arrow {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+        }
+
+        .index-title {
+            font-family: "Instrument Serif", serif;
+            font-size: clamp(2.2rem, 4.6vw, 4.7rem);
+            line-height: 0.95;
+            letter-spacing: -0.035em;
+        }
+
+        .index-type {
+            color: rgba(23, 24, 19, 0.62);
+        }
+
+        .index-arrow {
+            justify-self: end;
+            color: var(--signal);
+            transition: transform 160ms ease;
+        }
+
+        .index-row:hover .index-arrow {
+            transform: translate(4px, 4px);
+        }
+
+        .case {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            column-gap: 18px;
+            padding-block: clamp(110px, 13vw, 190px);
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .case-number {
+            grid-column: 1 / 2;
+            margin: 0;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.7rem;
+            color: var(--signal);
+        }
+
+        .case-title {
+            grid-column: 2 / 8;
+            margin: -0.18em 0 0;
+            font-family: "Instrument Serif", serif;
+            font-size: clamp(4.4rem, 9vw, 9.4rem);
+            font-weight: 400;
+            letter-spacing: -0.065em;
+            line-height: 0.78;
+        }
+
+        .case-lede {
+            grid-column: 9 / 13;
+            margin: 0;
+            align-self: end;
+            padding-top: 16px;
+            border-top: 1px solid var(--ink);
+            font-size: clamp(1rem, 1.45vw, 1.22rem);
+            line-height: 1.6;
+        }
+
+        .case-facts {
+            grid-column: 2 / 5;
+            margin: clamp(70px, 9vw, 124px) 0 0;
+            padding: 0;
+            list-style: none;
+            border-top: 1px solid var(--ink);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.68rem;
+            line-height: 1.5;
+            text-transform: uppercase;
+        }
+
+        .case-facts li {
+            display: grid;
+            grid-template-columns: 22px 1fr;
+            gap: 8px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--faint);
+        }
+
+        .case-facts li::before {
+            content: "•";
+            color: var(--signal);
+        }
+
+        .case-media-primary {
+            grid-column: 5 / 13;
+            margin: clamp(70px, 9vw, 124px) 0 0;
+        }
+
+        .case-media-secondary {
+            grid-column: 3 / 9;
+            margin: -4vw 0 0;
+            z-index: 2;
+        }
+
+        .case-media-primary figure,
+        .case-media-secondary figure {
+            margin: 0;
+        }
+
+        .case-media-primary img,
+        .case-media-primary video,
+        .case-media-secondary img,
+        .case-media-secondary video {
+            border: 1px solid var(--ink);
+            background: #d8d4c8;
+        }
+
+        .case-media-primary img {
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .case-media-secondary img,
+        .case-media-secondary video {
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .case-media-secondary video {
+            object-fit: contain;
+            background: #d8d4c8;
+        }
+
+        .caption {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            margin-top: 8px;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .caption span:last-child {
+            color: var(--signal);
+        }
+
+        .case.reverse .case-title {
+            grid-column: 5 / 12;
+        }
+
+        .case.reverse .case-lede {
+            grid-column: 2 / 5;
+            grid-row: 2;
+            margin-top: 46px;
+        }
+
+        .case.reverse .case-facts {
+            grid-column: 10 / 13;
+        }
+
+        .case.reverse .case-media-primary {
+            grid-column: 1 / 10;
+        }
+
+        .case.reverse .case-media-secondary {
+            grid-column: 7 / 13;
+        }
+
+        .notebook-actions {
+            grid-column: 7 / 13;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 24px;
+            border-top: 1px solid var(--ink);
+        }
+
+        .notebook-action {
+            min-height: 116px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--ink);
+            text-decoration: none;
+        }
+
+        .notebook-action:last-child {
+            border-right: 0;
+        }
+
+        .notebook-action small {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .notebook-action strong {
+            font-family: "Instrument Serif", serif;
+            font-size: clamp(1.7rem, 3vw, 2.8rem);
+            font-weight: 400;
+        }
+
+        .notebook-action:hover {
+            background: var(--signal);
+            color: var(--paper);
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            column-gap: 18px;
+            padding-block: clamp(110px, 14vw, 210px);
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .skills-title {
+            grid-column: 1 / 7;
+            margin: 0;
+            font-family: "Instrument Serif", serif;
+            font-size: clamp(5rem, 11vw, 11rem);
+            font-weight: 400;
+            letter-spacing: -0.07em;
+            line-height: 0.7;
+        }
+
+        .skills-title em {
+            display: block;
+            margin-left: 18%;
+            color: var(--signal);
+            font-weight: 400;
+        }
+
+        .skills-copy {
+            grid-column: 9 / 13;
+            align-self: end;
+            margin: 0;
+            padding-top: 16px;
+            border-top: 1px solid var(--ink);
+            line-height: 1.65;
+        }
+
+        .skills-list {
+            grid-column: 3 / 13;
+            margin-top: clamp(70px, 9vw, 120px);
+            border-top: 1px solid var(--ink);
+        }
+
+        .skills-row {
+            display: grid;
+            grid-template-columns: 3fr 7fr 1fr;
+            gap: 18px;
+            align-items: baseline;
+            min-height: 78px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .skills-row h3 {
+            margin: 0;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+        }
+
+        .skills-row p {
+            margin: 0;
+            font-family: "Instrument Serif", serif;
+            font-size: clamp(1.8rem, 3.7vw, 3.8rem);
+            line-height: 1;
+        }
+
+        .skills-row span {
+            justify-self: end;
+            color: var(--signal);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.66rem;
+        }
+
+        .contact {
+            position: relative;
+            min-height: 82svh;
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            grid-template-rows: 1fr auto;
+            column-gap: 18px;
+            padding-block: clamp(90px, 12vw, 170px) 40px;
+        }
+
+        .contact-title {
+            grid-column: 1 / 12;
+            align-self: center;
+            margin: 0;
+            font-family: "Instrument Serif", serif;
+            font-size: clamp(6rem, 14vw, 14rem);
+            font-weight: 400;
+            letter-spacing: -0.075em;
+            line-height: 0.66;
+        }
+
+        .contact-title em {
+            margin-left: 30%;
+            color: var(--signal);
+            font-weight: 400;
+        }
+
+        .contact-note {
+            grid-column: 2 / 5;
+            grid-row: 2;
+            align-self: end;
+            margin: 0;
+            padding-top: 14px;
+            border-top: 1px solid var(--ink);
+            line-height: 1.55;
+        }
+
+        .contact-links {
+            grid-column: 7 / 13;
+            grid-row: 2;
+            border-top: 1px solid var(--ink);
+        }
+
+        .contact-link {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--line);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.7rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .contact-link span:last-child {
+            color: rgba(23, 24, 19, 0.60);
+            text-transform: none;
+        }
+
+        .contact-link:hover span:first-child {
+            color: var(--signal);
+        }
+
+        footer {
+            border-top: 1px solid var(--ink);
+        }
+
+        .footer-inner {
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 980px) {
+            :root {
+                --page: min(100% - 34px, 900px);
+            }
+
+            body::before {
+                background: repeating-linear-gradient(
+                    to right,
+                    transparent 0,
+                    transparent calc(25vw - 1px),
+                    rgba(23, 24, 19, 0.035) calc(25vw - 1px),
+                    rgba(23, 24, 19, 0.035) 25vw
+                );
+            }
+
+            .hero {
+                grid-template-rows: auto auto auto auto;
+            }
+
+            .hero-title {
+                grid-column: 2 / 13;
+                grid-row: 2;
+                font-size: clamp(5.5rem, 18vw, 10rem);
+            }
+
+            .hero-portrait {
+                grid-column: 7 / 13;
+                grid-row: 3;
+                margin-top: -4vw;
+            }
+
+            .hero-intro {
+                grid-column: 2 / 7;
+                grid-row: 3;
+                align-self: center;
+            }
+
+            .hero-meta {
+                grid-column: 2 / 8;
+                grid-row: 4;
+                margin-top: 34px;
+            }
+
+            .scroll-note {
+                grid-column: 10 / 13;
+                grid-row: 4;
+            }
+
+            .case-title,
+            .case.reverse .case-title {
+                grid-column: 2 / 12;
+            }
+
+            .case-lede,
+            .case.reverse .case-lede {
+                grid-column: 7 / 13;
+                grid-row: auto;
+                margin-top: 46px;
+            }
+
+            .case-facts,
+            .case.reverse .case-facts {
+                grid-column: 2 / 6;
+                margin-top: 70px;
+            }
+
+            .case-media-primary,
+            .case.reverse .case-media-primary {
+                grid-column: 6 / 13;
+                margin-top: 70px;
+            }
+
+            .case-media-secondary,
+            .case.reverse .case-media-secondary {
+                grid-column: 3 / 10;
+                margin-top: -2vw;
+            }
+
+            .notebook-actions {
+                grid-column: 5 / 13;
+            }
+
+            .skills-title {
+                grid-column: 1 / 10;
+            }
+
+            .skills-copy {
+                grid-column: 8 / 13;
+                margin-top: 54px;
+            }
+
+            .skills-list {
+                grid-column: 2 / 13;
+            }
+
+            .contact-note {
+                grid-column: 1 / 5;
+            }
+
+            .contact-links {
+                grid-column: 6 / 13;
+            }
+        }
+
+        @media (max-width: 680px) {
+            :root {
+                --page: calc(100% - 26px);
+            }
+
+            .nav {
+                grid-template-columns: 1fr auto;
+            }
+
+            .nav-mark {
+                display: none;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-links a:first-child {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+                padding-bottom: 72px;
+            }
+
+            .hero-rail {
+                grid-column: 1 / 2;
+            }
+
+            .hero-label {
+                grid-column: 2 / 7;
+            }
+
+            .hero-title {
+                grid-column: 2 / 7;
+                font-size: clamp(4.7rem, 24vw, 7.4rem);
+                line-height: 0.73;
+            }
+
+            .hero-title .last {
+                margin-left: 0;
+            }
+
+            .hero-portrait {
+                grid-column: 3 / 7;
+                grid-row: 3;
+                margin-top: 18px;
+            }
+
+            .hero-intro {
+                grid-column: 2 / 7;
+                grid-row: 4;
+                margin-top: 30px;
+            }
+
+            .hero-meta {
+                grid-column: 2 / 7;
+                grid-row: 5;
+            }
+
+            .scroll-note {
+                display: none;
+            }
+
+            .index-heading {
+                display: none;
+            }
+
+            .index-row {
+                grid-template-columns: 38px 1fr auto;
+                min-height: 76px;
+            }
+
+            .index-type {
+                display: none;
+            }
+
+            .index-title {
+                font-size: 2.25rem;
+            }
+
+            .case {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+                padding-block: 94px;
+            }
+
+            .case-number {
+                grid-column: 1 / 2;
+            }
+
+            .case-title,
+            .case.reverse .case-title {
+                grid-column: 2 / 7;
+                font-size: clamp(4rem, 19vw, 6.3rem);
+            }
+
+            .case-lede,
+            .case.reverse .case-lede {
+                grid-column: 2 / 7;
+                margin-top: 38px;
+            }
+
+            .case-facts,
+            .case.reverse .case-facts {
+                grid-column: 2 / 7;
+                margin-top: 54px;
+            }
+
+            .case-media-primary,
+            .case.reverse .case-media-primary {
+                grid-column: 1 / 7;
+                margin-top: 54px;
+            }
+
+            .case-media-secondary,
+            .case.reverse .case-media-secondary {
+                grid-column: 2 / 7;
+                margin-top: 18px;
+            }
+
+            .notebook-actions {
+                grid-column: 1 / 7;
+                grid-template-columns: 1fr;
+            }
+
+            .notebook-action {
+                border-right: 0;
+            }
+
+            .skills {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+
+            .skills-title {
+                grid-column: 1 / 7;
+                font-size: clamp(4.6rem, 22vw, 7.3rem);
+            }
+
+            .skills-title em {
+                margin-left: 0;
+            }
+
+            .skills-copy {
+                grid-column: 2 / 7;
+                margin-top: 52px;
+            }
+
+            .skills-list {
+                grid-column: 1 / 7;
+            }
+
+            .skills-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding-block: 20px;
+            }
+
+            .skills-row span {
+                display: none;
+            }
+
+            .contact {
+                min-height: auto;
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+                grid-template-rows: auto auto auto;
+                padding-block: 100px 44px;
+            }
+
+            .contact-title {
+                grid-column: 1 / 7;
+                font-size: clamp(5.2rem, 25vw, 8rem);
+            }
+
+            .contact-title em {
+                display: block;
+                margin-left: 0;
+            }
+
+            .contact-note {
+                grid-column: 2 / 7;
+                grid-row: 2;
+                margin-top: 52px;
+            }
+
+            .contact-links {
+                grid-column: 1 / 7;
+                grid-row: 3;
+                margin-top: 46px;
+            }
+
+            .contact-link {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: center;
+                padding-block: 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            #particle-canvas {
+                display: none;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div id="dim-overlay"></div>
-    <canvas id="particle-canvas"></canvas>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-    <div id="loader">
-        <h1 id="loading-text">Loading</h1>
-    </div>
-
-    <header class="hero">
-        <div class="hero-left hero-content">
-            <p class="eyebrow">Portfolio</p>
-            <h1 class="hero-name">Matthew Ochsner</h1>
-            <p class="hero-subtitle">
-                Senior at Abraham Lincoln High School<br>
-                Robotics, engineering documentation, and programming
-            </p>
-
-            <button class="down-arrow" aria-label="Scroll to portfolio content">View Work</button>
-        </div>
-
-        <div class="hero-right hero-content">
-            <img src="assets/IMG_7587.jpeg" class="hero-image" alt="Matthew Ochsner">
-        </div>
+    <header class="site-header">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="nav-name" href="#top">Matthew Ochsner</a>
+            <span class="nav-mark" aria-hidden="true"></span>
+            <div class="nav-links">
+                <a href="#index">Index</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
     </header>
 
-    <main id="content">
-<section class="content-section ta auton-section">
-            <div class="text card-3d auton-card">
-                <p class="section-label">Robotics</p>
-                <h2>Competition Robotics</h2>
-                <p>
-                    I’ve helped lead my robotics team through state, national, and world-level competition, with work across robot design, autonomous programming, match strategy, and documentation.
-                </p>
+    <main id="top">
+        <section class="hero shell">
+            <div class="hero-rail">Portfolio / 2026 / Council Bluffs, Iowa</div>
 
-                <button class="expand-arrow" aria-label="Expand robotics section" aria-expanded="false">Open Details</button>
+            <p class="hero-label">
+                Competition robotics<br>
+                Engineering documentation<br>
+                <span>Programming + design</span>
+            </p>
 
-                <div class="extra-content">
-                    <h3>Autonomous Demo</h3>
+            <h1 class="hero-title">
+                <span class="first">Matthew</span>
+                <span class="last">Ochsner</span>
+            </h1>
 
-                    <video class="auton-media" muted loop playsinline preload="metadata">
+            <figure class="hero-portrait">
+                <img src="assets/IMG_7587.jpeg" alt="Portrait of Matthew Ochsner">
+                <figcaption>
+                    <span>ALHS</span>
+                    <span>Class of 2027</span>
+                </figcaption>
+            </figure>
+
+            <p class="hero-intro">
+                I build competitive robots and document the decisions behind them. My work moves between mechanical design, autonomous code, testing, strategy, and technical communication.
+            </p>
+
+            <div class="hero-meta" aria-label="Portfolio summary">
+                <div>
+                    <strong>200+</strong>
+                    <span>Notebook pages</span>
+                </div>
+                <div>
+                    <strong>VEX V5</strong>
+                    <span>Primary platform</span>
+                </div>
+            </div>
+
+            <a class="scroll-note" href="#index">Work index</a>
+        </section>
+
+        <section id="index" class="index shell" aria-labelledby="index-title">
+            <div class="index-heading" id="index-title">
+                <span>No.</span>
+                <span>Selected work</span>
+                <span>Discipline</span>
+                <span></span>
+            </div>
+
+            <a class="index-row" href="#robotics">
+                <span class="index-no">01</span>
+                <span class="index-title">Competition robotics</span>
+                <span class="index-type">Design / Code</span>
+                <span class="index-arrow">↘</span>
+            </a>
+
+            <a class="index-row" href="#documentation">
+                <span class="index-no">02</span>
+                <span class="index-title">Engineering notebooks</span>
+                <span class="index-type">Process / Evidence</span>
+                <span class="index-arrow">↘</span>
+            </a>
+
+            <a class="index-row" href="#communication">
+                <span class="index-no">03</span>
+                <span class="index-title">Technical communication</span>
+                <span class="index-type">Outreach / Leadership</span>
+                <span class="index-arrow">↘</span>
+            </a>
+        </section>
+
+        <section id="robotics" class="case shell">
+            <p class="case-number">01 / ROBOTICS</p>
+            <h2 class="case-title">Built for the match.</h2>
+            <p class="case-lede">
+                My role spans mechanism design, autonomous programming, testing, match strategy, and the constant redesign that happens between events.
+            </p>
+
+            <ul class="case-facts">
+                <li>U.S. Open National Finalist</li>
+                <li>U.S. Open Green Division Champion</li>
+                <li>Iowa State Champion</li>
+                <li>Iowa State Skills Champion</li>
+                <li>Worlds Division Semifinalist</li>
+            </ul>
+
+            <div class="case-media-primary">
+                <figure>
+                    <img src="assets/IMG_3829.JPG" alt="Matthew's robotics team at competition">
+                    <figcaption class="caption">
+                        <span>Competition floor / team execution</span>
+                        <span>01A</span>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="case-media-secondary">
+                <figure>
+                    <video controls muted loop playsinline preload="metadata" aria-label="Autonomous robotics demonstration">
                         <source src="assets/auton.webm" type="video/webm">
                         <source src="assets/auton.mp4" type="video/mp4">
                     </video>
-
-                    <ul>
-                        <li>Autonomous routine example</li>
-                        <li>U.S. Open National Finalist</li>
-                        <li>U.S. Open Green Division Champion</li>
-                        <li>Iowa State Champion</li>
-                        <li>Iowa State Skills Champion</li>
-                        <li>Worlds Division Semi-Finalist</li>
-                    </ul>
-                </div>
-            </div>
-
-            <img src="assets/IMG_3829.JPG" class="side-image card-3d" alt="Robotics competition">
-        </section>
-<section class="content-section at">
-            <img src="assets/IMG_5424.jpeg" class="side-image card-3d" alt="Engineering documentation">
-
-            <div class="text card-3d">
-                <p class="section-label">Engineering Notebook</p>
-                <h2>Engineering Notebooks & Design Process</h2>
-                <p>
-                    I’ve written and organized 200+ pages of engineering notebook work, covering design decisions, testing, autonomous code, and competition strategy.
-                </p>
-
-                <button class="expand-arrow" aria-label="Expand documentation section" aria-expanded="false">Open Details</button>
-
-                <div class="extra-content">
-                    <h3>Notebook Samples</h3>
-
-                    <img src="assets/notebook.png" class="auton-media" alt="Engineering notebook sample">
-
-                    <ul>
-                        <li>Two full-year engineering notebooks</li>
-                        <li>Built around the iterative design process</li>
-                    </ul>
-
-                    <div class="button-row">
-                        <a class="notebook-button"
-                           href="https://docs.google.com/presentation/d/1YOchEbEHIp_xqD45ipvGdBornloUDp4Q9J0OyUTbpR0/edit?usp=sharing"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           referrerpolicy="no-referrer">
-                            2026–2027 Engineering Notebook
-                        </a>
-
-                        <a class="notebook-button"
-                           href="https://docs.google.com/presentation/d/18BG96TuRv6_l7dhTJ069DKZa0bz133S2UFBVQQLp1iE/edit?usp=sharing"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           referrerpolicy="no-referrer">
-                            2025–2026 Engineering Notebook
-                        </a>
-                    </div>
-                </div>
+                    <figcaption class="caption">
+                        <span>Autonomous routine / programming + testing</span>
+                        <span>01B</span>
+                    </figcaption>
+                </figure>
             </div>
         </section>
-<section class="content-section ta">
-            <div class="text card-3d">
-                <p class="section-label">Technical Work</p>
-                <h2>Technical Skills & Coursework</h2>
-                <p>
-                    My technical background comes from robotics, engineering coursework, college classes, and independent project work.
-                </p>
 
-                <div class="mini-block">
-                    <button class="mini-header" aria-label="Open coursework details">
-                        <h3>Coursework</h3>
-                        <span class="mini-status">Open</span>
-                    </button>
-
-                    <div class="mini-extra">
-                        <p>Robotics Engineering</p>
-                        <p>General Engineering</p>
-                        <p>Mathematics</p>
-                        <p>Physics</p>
-                        <p>NASA OSS101</p>
-                        <p>Iowa Western Community College Studies</p>
-                    </div>
-                </div>
-
-                <div class="mini-block">
-                    <button class="mini-header" aria-label="Open programming and software details">
-                        <h3>Programming & Software</h3>
-                        <span class="mini-status">Open</span>
-                    </button>
-
-                    <div class="mini-extra">
-                        <p>C++</p>
-                        <p>Python</p>
-                        <p>LVGL</p>
-                    </div>
-                </div>
-
-                <div class="mini-block">
-                    <button class="mini-header" aria-label="Open technical stack details">
-                        <h3>Technical Stack</h3>
-                        <span class="mini-status">Open</span>
-                    </button>
-
-                    <div class="mini-extra">
-                        <p>Fusion 360</p>
-                        <p>OpenRocket</p>
-                        <p>Arduino</p>
-                        <p>VEX V5</p>
-                    </div>
-                </div>
-            </div>
-
-            <img src="assets/citycouncil.png" class="side-image card-3d" alt="City council presentation">
-        </section>
-
-    </main>
-<section class="contact-section">
-        <div class="contact-card card-3d">
-            <p class="section-label">Contact</p>
-            <h2>Contact Me</h2>
-            <p>
-                Reach out about opportunities, robotics, engineering projects, or related work.
+        <section id="documentation" class="case reverse shell">
+            <p class="case-number">02 / DOCUMENTATION</p>
+            <h2 class="case-title">The notebook is part of the robot.</h2>
+            <p class="case-lede">
+                More than 200 pages record concepts, tradeoffs, prototypes, failures, test results, code, strategy, and the reasoning behind each major revision.
             </p>
 
-            <div class="contact-info">
-                <p>Phone: +1 712-310-0785</p>
-                <p>Email: mochsner08@gmail.com</p>
+            <ul class="case-facts">
+                <li>Two full-season notebooks</li>
+                <li>Iterative design records</li>
+                <li>Mechanical and software evidence</li>
+                <li>Testing and post-event analysis</li>
+            </ul>
+
+            <div class="case-media-primary">
+                <figure>
+                    <img src="assets/IMG_5424.jpeg" alt="Engineering documentation work">
+                    <figcaption class="caption">
+                        <span>Engineering notebook / working process</span>
+                        <span>02A</span>
+                    </figcaption>
+                </figure>
             </div>
 
-            <div class="contact-buttons">
-                <a href="mailto:mochsner08@gmail.com" class="contact-btn">Email Me</a>
-                <a href="tel:7123100785" class="contact-btn">Text Me</a>
-                <a href="https://www.linkedin.com/in/matthewochsner"
+            <div class="case-media-secondary">
+                <figure>
+                    <img src="assets/notebook.png" alt="Example page from an engineering notebook">
+                    <figcaption class="caption">
+                        <span>Notebook sample / design evidence</span>
+                        <span>02B</span>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="notebook-actions">
+                <a class="notebook-action"
+                   href="https://docs.google.com/presentation/d/1YOchEbEHIp_xqD45ipvGdBornloUDp4Q9J0OyUTbpR0/edit?usp=sharing"
                    target="_blank"
                    rel="noopener noreferrer"
-                   referrerpolicy="no-referrer"
-                   class="contact-btn">
-                    LinkedIn
+                   referrerpolicy="no-referrer">
+                    <small>Open current notebook ↗</small>
+                    <strong>2026–2027</strong>
+                </a>
+
+                <a class="notebook-action"
+                   href="https://docs.google.com/presentation/d/18BG96TuRv6_l7dhTJ069DKZa0bz133S2UFBVQQLp1iE/edit?usp=sharing"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   referrerpolicy="no-referrer">
+                    <small>Open previous notebook ↗</small>
+                    <strong>2025–2026</strong>
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="communication" class="case shell">
+            <p class="case-number">03 / COMMUNICATION</p>
+            <h2 class="case-title">Explain the work.</h2>
+            <p class="case-lede">
+                Engineering only matters when the idea can be understood, tested, funded, taught, and improved. I use presentations and documentation to make technical work legible outside the build room.
+            </p>
+
+            <ul class="case-facts">
+                <li>Public technical presentations</li>
+                <li>Community and donor outreach</li>
+                <li>Team leadership</li>
+                <li>Independent engineering projects</li>
+            </ul>
+
+            <div class="case-media-primary">
+                <figure>
+                    <img src="assets/citycouncil.png" alt="Matthew presenting to city council">
+                    <figcaption class="caption">
+                        <span>City council presentation / technical outreach</span>
+                        <span>03A</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="skills" class="skills shell">
+            <h2 class="skills-title">Tools, <em>not badges.</em></h2>
+            <p class="skills-copy">
+                These are the systems I actually use to design, program, document, test, and present engineering work.
+            </p>
+
+            <div class="skills-list">
+                <div class="skills-row">
+                    <h3>Programming</h3>
+                    <p>C++, Python, LVGL, autonomous systems</p>
+                    <span>01</span>
+                </div>
+                <div class="skills-row">
+                    <h3>Design</h3>
+                    <p>Fusion 360, mechanism design, iteration</p>
+                    <span>02</span>
+                </div>
+                <div class="skills-row">
+                    <h3>Hardware</h3>
+                    <p>VEX V5, Arduino, sensors, controls</p>
+                    <span>03</span>
+                </div>
+                <div class="skills-row">
+                    <h3>Analysis</h3>
+                    <p>Testing, documentation, strategy, physics</p>
+                    <span>04</span>
+                </div>
+                <div class="skills-row">
+                    <h3>Other</h3>
+                    <p>OpenRocket, NASA OSS101, technical presentation</p>
+                    <span>05</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact shell">
+            <h2 class="contact-title">Start a<br><em>conversation.</em></h2>
+
+            <p class="contact-note">
+                Robotics, engineering projects, internships, and technical work.
+            </p>
+
+            <div class="contact-links">
+                <a class="contact-link" href="mailto:mochsner08@gmail.com">
+                    <span>Email</span>
+                    <span>mochsner08@gmail.com</span>
+                </a>
+                <a class="contact-link" href="tel:7123100785">
+                    <span>Phone</span>
+                    <span>+1 712-310-0785</span>
+                </a>
+                <a class="contact-link"
+                   href="https://www.linkedin.com/in/matthewochsner"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   referrerpolicy="no-referrer">
+                    <span>LinkedIn</span>
+                    <span>matthewochsner ↗</span>
+                </a>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>© 2026 Matthew Ochsner</p>
+        <div class="footer-inner shell">
+            <span>© 2026 Matthew Ochsner</span>
+            <span>Designed around the work, not a template.</span>
+        </div>
     </footer>
 
-    <script nonce="matthew-portfolio-v1">
+    <script nonce="matthew-portfolio-v3">
+        const canvas = document.querySelector("#particle-canvas");
+        const context = canvas ? canvas.getContext("2d") : null;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const $ = selector => document.querySelector(selector);
-const $$ = selector => document.querySelectorAll(selector);
+        let particles = [];
+        let animationFrame = null;
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        let mouseX = -1000;
+        let mouseY = -1000;
 
-const loadingText = $("#loading-text");
-let dots = 0;
+        function resizeCanvas() {
+            if (!canvas || !context) return;
 
-const loadingInterval = setInterval(() => {
-    if (!loadingText) return;
+            const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+            width = window.innerWidth;
+            height = window.innerHeight;
 
-    dots = (dots + 1) % 4;
-    loadingText.textContent = "Loading" + ".".repeat(dots);
-}, 400);
+            canvas.width = Math.floor(width * pixelRatio);
+            canvas.height = Math.floor(height * pixelRatio);
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        }
 
-window.addEventListener("load", () => {
-    clearInterval(loadingInterval);
+        function makeParticles() {
+            const count = Math.max(26, Math.min(54, Math.floor(width / 30)));
 
-    const loader = $("#loader");
-    if (!loader) return;
+            particles = Array.from({ length: count }, (_, index) => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: index % 9 === 0 ? 2.6 : 0.8 + Math.random() * 1.6,
+                vx: (Math.random() - 0.5) * 0.055,
+                vy: (Math.random() - 0.5) * 0.055,
+                accent: index % 11 === 0,
+                opacity: 0.10 + Math.random() * 0.18
+            }));
+        }
 
-    loader.style.opacity = "0";
+        function renderParticles() {
+            if (!canvas || !context) return;
 
-    setTimeout(() => {
-        loader.style.display = "none";
-    }, 500);
-});
+            context.clearRect(0, 0, width, height);
 
-const hero = $(".hero");
+            for (const particle of particles) {
+                if (!reduceMotion) {
+                    const dx = particle.x - mouseX;
+                    const dy = particle.y - mouseY;
+                    const distance = Math.hypot(dx, dy);
 
-window.addEventListener("scroll", () => {
-    if (!hero) return;
+                    if (distance > 0 && distance < 105) {
+                        const force = (105 - distance) / 105 * 0.006;
+                        particle.vx += (dx / distance) * force;
+                        particle.vy += (dy / distance) * force;
+                    }
 
-    const scrollY = window.scrollY;
-    const fade = Math.max(1 - scrollY / 430, 0);
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    particle.vx *= 0.995;
+                    particle.vy *= 0.995;
 
-    hero.style.opacity = fade;
-    hero.style.transform = `translateY(${scrollY * 0.18}px)`;
-});
+                    if (particle.x < -8) particle.x = width + 8;
+                    if (particle.x > width + 8) particle.x = -8;
+                    if (particle.y < -8) particle.y = height + 8;
+                    if (particle.y > height + 8) particle.y = -8;
+                }
 
-const downArrow = $(".down-arrow");
-
-if (downArrow) {
-    downArrow.addEventListener("click", () => {
-        const content = $("#content");
-
-        window.scrollTo({
-            top: content ? content.offsetTop : window.innerHeight,
-            behavior: "smooth"
-        });
-    });
-}
-
-const revealItems = $$(".content-section, .contact-section");
-
-const observer = new IntersectionObserver(
-    entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("in-view");
+                context.beginPath();
+                context.fillStyle = particle.accent
+                    ? `rgba(214, 72, 47, ${Math.min(particle.opacity + 0.08, 0.30)})`
+                    : `rgba(23, 24, 19, ${particle.opacity})`;
+                context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                context.fill();
             }
-        });
-    },
-    { threshold: 0.18 }
-);
 
-revealItems.forEach(item => observer.observe(item));
-
-$$(".expand-arrow").forEach(button => {
-    button.addEventListener("click", () => {
-        const card = button.closest(".text");
-        const extra = card ? card.querySelector(".extra-content") : null;
-
-        if (!extra || !card) return;
-
-        const isOpen = extra.classList.toggle("open");
-
-        card.classList.toggle("is-expanded", isOpen);
-
-        const section = card.closest(".content-section");
-        if (section && card.classList.contains("auton-card")) {
-            section.classList.toggle("auton-open", isOpen);
+            if (!reduceMotion) {
+                animationFrame = requestAnimationFrame(renderParticles);
+            }
         }
-        button.classList.toggle("open", isOpen);
-        button.textContent = isOpen ? "Close Details" : "Open Details";
-        button.setAttribute("aria-expanded", String(isOpen));
 
-        const video = extra.querySelector("video");
+        function initializeParticles() {
+            if (!canvas || !context) return;
+            if (animationFrame) cancelAnimationFrame(animationFrame);
 
-        if (!video) return;
-
-        if (isOpen) {
-            video.play().catch(() => {
-            });
-        } else {
-            video.pause();
-            video.currentTime = 0;
+            resizeCanvas();
+            makeParticles();
+            renderParticles();
         }
-    });
-});
 
-$$(".mini-header").forEach(header => {
-    header.addEventListener("click", () => {
-        const status = header.querySelector(".mini-status");
-        const extra = header.nextElementSibling;
-
-        if (!status || !extra) return;
-
-        const isOpen = extra.classList.toggle("open");
-
-        status.textContent = isOpen ? "Close" : "Open";
-    });
-});
-
-const dim = $("#dim-overlay");
-
-if (dim) {
-    $$(".card-3d").forEach(card => {
-        card.addEventListener("mouseenter", () => dim.classList.add("active"));
-        card.addEventListener("mouseleave", () => dim.classList.remove("active"));
-    });
-}
-
-const canvas = $("#particle-canvas");
-const ctx = canvas ? canvas.getContext("2d") : null;
-
-let particles = [];
-const particleCount = 42;
-
-function resizeCanvas() {
-    if (!canvas) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-function spawnParticleWithSpacing(minDist = 58) {
-    if (!canvas) return { x: 0, y: 0 };
-
-    let x = 0;
-    let y = 0;
-    let attempts = 0;
-
-    while (attempts < 80) {
-        x = Math.random() * canvas.width;
-        y = Math.random() * canvas.height;
-
-        const valid = particles.every(p => {
-            const dx = x - p.x;
-            const dy = y - p.y;
-            return Math.sqrt(dx * dx + dy * dy) >= minDist;
+        window.addEventListener("mousemove", event => {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
         });
 
-        if (valid) break;
+        window.addEventListener("mouseleave", () => {
+            mouseX = -1000;
+            mouseY = -1000;
+        });
 
-        attempts++;
-    }
-
-    return { x, y };
-}
-
-class Particle {
-    constructor() {
-        const pos = spawnParticleWithSpacing();
-
-        this.x = pos.x;
-        this.y = pos.y;
-        this.size = 2 + Math.random() * 5;
-        this.depth = Math.random();
-
-        const speed = 0.08 + this.depth * 0.26;
-
-        this.vx = (Math.random() - 0.5) * speed;
-        this.vy = (Math.random() - 0.5) * speed;
-    }
-
-    update(mouse, scrollSpeed) {
-        if (!canvas) return;
-
-        this.y += scrollSpeed * (0.01 + this.depth * 0.04);
-
-        const dx = this.x - mouse.x;
-        const dy = this.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist > 0.1 && dist < 145) {
-            const force = (145 - dist) / 145;
-            const nx = dx / dist;
-            const ny = dy / dist;
-
-            this.vx += nx * force * (0.42 + this.depth);
-            this.vy += ny * force * (0.42 + this.depth);
-        }
-
-        this.x += this.vx;
-        this.y += this.vy;
-
-        this.vx *= 0.985;
-        this.vy *= 0.985;
-
-        if (this.x < 0) this.x = canvas.width;
-        if (this.x > canvas.width) this.x = 0;
-        if (this.y < 0) this.y = canvas.height;
-        if (this.y > canvas.height) this.y = 0;
-    }
-
-    draw() {
-        if (!ctx) return;
-
-        const alpha = 0.18 + this.depth * 0.42;
-
-        ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-if (canvas && ctx) {
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-    }
-}
-
-const mouse = {
-    x: -9999,
-    y: -9999
-};
-
-window.addEventListener("mousemove", e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-});
-
-let lastScrollY = window.scrollY;
-let scrollSpeed = 0;
-
-window.addEventListener("scroll", () => {
-    const newY = window.scrollY;
-
-    scrollSpeed = newY - lastScrollY;
-    lastScrollY = newY;
-});
-
-function resolveParticleCollisions() {
-    for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-            const p1 = particles[i];
-            const p2 = particles[j];
-
-            const dx = p2.x - p1.x;
-            const dy = p2.y - p1.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const minDist = p1.size + p2.size + 2;
-
-            if (dist <= 0 || dist >= minDist) continue;
-
-            const nx = dx / dist;
-            const ny = dy / dist;
-            const overlap = minDist - dist;
-
-            p1.x -= nx * overlap * 0.5;
-            p1.y -= ny * overlap * 0.5;
-            p2.x += nx * overlap * 0.5;
-            p2.y += ny * overlap * 0.5;
-
-            const rvx = p2.vx - p1.vx;
-            const rvy = p2.vy - p1.vy;
-            const velAlongNormal = rvx * nx + rvy * ny;
-
-            if (velAlongNormal > 0) continue;
-
-            const impulse = -velAlongNormal;
-
-            p1.vx -= impulse * nx;
-            p1.vy -= impulse * ny;
-            p2.vx += impulse * nx;
-            p2.vy += impulse * ny;
-        }
-    }
-}
-
-function animateParticles() {
-    if (!canvas || !ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    particles.forEach(particle => particle.update(mouse, scrollSpeed));
-    resolveParticleCollisions();
-    particles.forEach(particle => particle.draw());
-
-    scrollSpeed *= 0.9;
-
-    requestAnimationFrame(animateParticles);
-}
-
-animateParticles();
-
+        window.addEventListener("resize", initializeParticles);
+        initializeParticles();
     </script>
 </body>
 </html>
