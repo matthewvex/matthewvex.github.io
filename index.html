@@ -126,18 +126,6 @@
             padding-bottom: 8px;
         }
 
-        .kicker,
-        .image-caption {
-            margin: 0;
-            font-size: 0.78rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .kicker {
-            color: var(--muted);
-            margin-bottom: 22px;
-        }
 
         h1 {
             margin: 0;
@@ -173,14 +161,6 @@
             aspect-ratio: 4 / 5;
             object-fit: cover;
             border: 1px solid var(--text);
-        }
-
-        .image-caption {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            margin-top: 9px;
-            color: var(--muted);
         }
 
         .section {
@@ -254,26 +234,13 @@
         }
 
         .facts {
-            margin: 30px 0 0;
-            padding: 0;
-            border-top: 1px solid var(--line);
-            list-style: none;
+            margin: 28px 0 0;
+            padding-left: 20px;
         }
 
         .facts li {
-            display: grid;
-            grid-template-columns: 120px minmax(0, 1fr);
-            gap: 22px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--line);
-            line-height: 1.4;
-        }
-
-        .facts strong {
-            font-size: 0.82rem;
-            font-weight: 400;
-            letter-spacing: 0.07em;
-            text-transform: uppercase;
+            margin-bottom: 10px;
+            line-height: 1.5;
         }
 
         .notebook-links,
@@ -431,11 +398,6 @@
                 margin-top: 36px;
             }
 
-            .facts li {
-                grid-template-columns: 1fr;
-                gap: 4px;
-            }
-
             footer {
                 align-items: flex-start;
                 flex-direction: column;
@@ -471,22 +433,17 @@
     <main class="page" id="top">
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero-copy">
-                <p class="kicker">Robotics and engineering portfolio</p>
                 <h1 id="hero-title">Matthew<br>Ochsner</h1>
                 <p class="hero-intro">
-                    I design, build, program, test, and document competition robots.
+                    I build competition robots and document how they come together.
                 </p>
                 <p class="hero-note">
-                    Senior at Abraham Lincoln High School. Interested in mechanical engineering, robotics, and practical technical work.
+                    I am a senior at Abraham Lincoln High School and plan to study mechanical engineering.
                 </p>
             </div>
 
             <figure class="hero-image-wrap">
                 <img src="assets/IMG_7587.jpeg" class="hero-image" alt="Matthew Ochsner">
-                <figcaption class="image-caption">
-                    <span>Portrait</span>
-                    <span>2026</span>
-                </figcaption>
             </figure>
         </section>
 
@@ -494,7 +451,7 @@
             <div class="section-body">
                 <h2 class="section-heading" id="robotics-heading">Competition robotics</h2>
                 <p class="section-lead">
-                    My work includes mechanism design, autonomous programming, driver strategy, testing, and team leadership at state, national, and world-level events.
+                    On my team, I work on the robot from the first sketch through competition. That includes designing mechanisms, writing autonomous code, testing, fixing problems, and helping with match strategy.
                 </p>
 
                 <div class="project-layout">
@@ -503,22 +460,17 @@
                             <source src="assets/auton.webm" type="video/webm">
                             <source src="assets/auton.mp4" type="video/mp4">
                         </video>
-                        <figcaption class="image-caption">
-                            <span>Autonomous routine</span>
-                            <span>VEX V5</span>
-                        </figcaption>
                     </figure>
 
                     <div class="project-copy">
                         <p>
-                            I approach the robot as a complete system rather than a collection of isolated mechanisms. Mechanical decisions, controls, autonomous routines, and match strategy are developed together and revised through testing.
+                            One change to the robot usually affects several other things. A new mechanism can change the code, the way it drives, and the match plan, so I try to test the whole robot together instead of treating each part separately.
                         </p>
 
                         <ul class="facts">
-                            <li><strong>Worlds</strong><span>Division Semifinalist</span></li>
-                            <li><strong>U.S. Open</strong><span>National Finalist and Green Division Champion</span></li>
-                            <li><strong>Iowa</strong><span>State Champion and Skills Champion</span></li>
-                            <li><strong>Focus</strong><span>Design, programming, strategy, and documentation</span></li>
+                            <li>Division semifinalist at the VEX Robotics World Championship</li>
+                            <li>National finalist and Green Division champion at the U.S. Open</li>
+                            <li>Iowa State champion and skills champion</li>
                         </ul>
                     </div>
                 </div>
@@ -529,16 +481,16 @@
             <div class="section-body">
                 <h2 class="section-heading" id="notebook-heading">Engineering notebooks</h2>
                 <p class="section-lead">
-                    More than 200 pages of design reasoning, sketches, testing, failures, revisions, programming notes, and competition analysis.
+                    I have written more than 200 pages across two engineering notebooks. They include sketches, test results, failed ideas, code notes, design changes, and competition analysis.
                 </p>
 
                 <div class="project-layout reverse">
                     <div class="project-copy">
                         <p>
-                            The notebook is used as an engineering tool, not just a record. It explains why a design was selected, what failed during testing, what changed, and how the result affected the next iteration.
+                            I use the notebook to keep track of why we made each decision, what happened during testing, and what we changed afterward. It also helps us avoid repeating the same mistakes later.
                         </p>
                         <p>
-                            The work spans two competition seasons and follows projects from early concepts through completed robots and competition results.
+                            Both notebooks follow the robots from early ideas and rough sketches to finished builds and competition results.
                         </p>
 
                         <div class="notebook-links">
@@ -549,10 +501,6 @@
 
                     <figure class="project-media">
                         <img src="assets/notebook.png" alt="Engineering notebook sample">
-                        <figcaption class="image-caption">
-                            <span>Notebook sample</span>
-                            <span>Design process</span>
-                        </figcaption>
                     </figure>
                 </div>
             </div>
@@ -562,7 +510,7 @@
             <div class="section-body">
                 <h2 class="section-heading" id="skills-heading">Skills and coursework</h2>
                 <p class="section-lead">
-                    Technical experience developed through robotics, college coursework, independent projects, and repeated hands-on testing.
+                    Most of what I know comes from building robots, taking college classes, and working through problems on my own.
                 </p>
 
                 <div class="skills">
@@ -594,18 +542,14 @@
                 <div class="project-layout">
                     <figure class="project-media">
                         <img src="assets/citycouncil.png" alt="Matthew presenting at a city council meeting">
-                        <figcaption class="image-caption">
-                            <span>Technical communication</span>
-                            <span>Public presentation</span>
-                        </figcaption>
                     </figure>
 
                     <div class="project-copy">
                         <p>
-                            Engineering work also depends on communicating clearly. I have presented technical projects to judges, teammates, community members, and local leaders.
+                            I have also had to explain our work to people who were not involved in the build, including judges, teammates, community members, and local leaders.
                         </p>
                         <p>
-                            My goal is to make the reasoning behind a design understandable without oversimplifying the engineering.
+                            I try to explain what we made, why we made it that way, and what we learned when it did not work.
                         </p>
                     </div>
                 </div>
@@ -618,7 +562,7 @@
 
                 <div class="contact-details">
                     <p>
-                        Reach out about robotics, engineering projects, internships, or other technical opportunities.
+                        You can reach me about robotics, engineering projects, internships, or similar work.
                     </p>
 
                     <ul class="contact-list">
@@ -633,7 +577,6 @@
 
     <footer class="page">
         <span>© 2026 Matthew Ochsner</span>
-        <span>Robotics and engineering</span>
     </footer>
 
     <script nonce="matthew-minimal">
